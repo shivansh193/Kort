@@ -8,6 +8,7 @@ const Home = () => {
   const router = useRouter();
 
   return (
+    <div className="main min-h-screen flex flex-col justify-start items-center">
     <div className="main min-h-screen flex flex-col justify-start overflow-y-scroll no-scrollbar items-center">
       <Navbar></Navbar>
       <img src="https://picsum.photos/1200/600" />

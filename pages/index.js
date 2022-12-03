@@ -1,9 +1,21 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import LandingPage from "./LandingPage";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
+const Index = () => {
+  const SocialLoginDynamic = dynamic(
+    () => import("../components/scw").then((res) => res.default),
+    {
+      ssr: false,
+    }
+  );
 
-export default function Home() {
-  return <LandingPage/>;
-}
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SocialLoginDynamic />
+      </Suspense>
+    </div>
+  );
+};
+
+export default Index;

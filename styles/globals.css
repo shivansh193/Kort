@@ -43,10 +43,15 @@ a {
   display: none;
 }
 
-
 .todo {
   cursor: pointer;
 }
 .strike {
   text-decoration: line-through;
+}
+.navBar {
+  background-color: black;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-bottom: 40px;
 }

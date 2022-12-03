@@ -17,6 +17,9 @@ async function connectWallet() {
   console.log("EOA address", accounts);
 }
 
+
+
+
 const LandingPage = () => {
   const router = useRouter();
   return (

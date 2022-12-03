@@ -47,7 +47,8 @@ const Home = () => {
         ></CaseCard>
       </div>
     </div>
-  );
-};
+    </div>
+  )
+        }
 
 export default Home;

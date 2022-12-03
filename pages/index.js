@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import Nft from "../components/Nft";
 import LandingPage from "./LandingPage";
 
 const Index = () => {
@@ -7,7 +8,8 @@ const Index = () => {
 
   return (
     <div>
-      <LandingPage></LandingPage>
+      {/* <LandingPage></LandingPage> */}
+      <Nft></Nft>
     </div>
   );
 };

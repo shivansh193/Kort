@@ -8,7 +8,7 @@ const Home = () => {
   const router = useRouter();
 
   return (
-    <div className="main h-[120vh] flex flex-col justify-start items-center">
+    <div className="main min-h-screen flex flex-col justify-start items-center">
       <Navbar></Navbar>
       <div className="w-[50%] flex flex-row justify-between items-center mt-10">
         <CurvedButton

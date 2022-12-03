@@ -1,6 +1,5 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const LandingPage = () => {
   const router = useRouter();
@@ -14,7 +13,6 @@ const LandingPage = () => {
       >
         Enter Dapp
       </button>
-      <ConnectButton></ConnectButton>
     </div>
   );
 };

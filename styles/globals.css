@@ -35,9 +35,8 @@ a {
 
 .main {
   background: #0a0909;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
-  overflow-y: hidden;
 }
 
 .no-scrollbar::-webkit-scrollbar {

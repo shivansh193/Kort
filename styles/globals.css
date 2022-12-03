@@ -19,6 +19,11 @@ a {
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "NiceFont";
+  src: url("../public/fonts/Sowjetschablone.ttf");
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     /* color-scheme: dark; */
@@ -26,4 +31,23 @@ a {
   body {
     color: white;
   }
+}
+
+.main {
+  background: #0a0909;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: hidden;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+
+.todo {
+  cursor: pointer;
+}
+.strike {
+  text-decoration: line-through;
 }

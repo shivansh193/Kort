@@ -7,12 +7,12 @@ module.exports = {
   theme: {
     colors: {
       navBg: "#3C0404",
-      caseCard: '#5e1d16',
-      white: "#ffffff"
+      caseCard: "#5e1d16",
+      white: "#ffffff",
     },
     fontFamily: {
-      niceFont: ["NiceFont", "sans-serif"]
+      niceFont: ["NiceFont", "sans-serif"],
     },
   },
   plugins: [],
-}
+};

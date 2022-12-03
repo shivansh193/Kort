@@ -1,6 +1,9 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Image from "next/image"
+import Kort from "../assets/logos/KortLogo"
+
 
 const LandingPage = () => {
   const router = useRouter();

@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import KortLogo from "../assets/logos/Kort Logo.png";
 import { useRouter } from "next/router";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const Navbar = () => {
 
@@ -17,6 +18,7 @@ const Navbar = () => {
       </div>
       <div className="flex flex-row justify-center items-center">
         <span>Pending</span>
+        <ConnectButton></ConnectButton>
 
       </div>
     </div>

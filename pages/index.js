@@ -1,19 +1,13 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import LandingPage from "./LandingPage";
 
 const Index = () => {
-  const SocialLoginDynamic = dynamic(
-    () => import("../components/scw").then((res) => res.default),
-    {
-      ssr: false,
-    }
-  );
+ 
 
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <SocialLoginDynamic />
-      </Suspense>
+      <LandingPage></LandingPage>
     </div>
   );
 };

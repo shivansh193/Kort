@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import KortLogo from "../assets/logos/Kort Logo.png";
+import bell from "../assets/images/bell.jpg";
 import { useRouter } from "next/router";
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Navbar = () => {
   const router = useRouter();
@@ -26,9 +27,15 @@ const Navbar = () => {
         <span>KORT</span>
       </div>
       <div className="flex flex-row justify-center items-center">
-        <span>Pending</span>
+        <div
+          onClick={() => {
+            router.push("/Notifications");
+          }}
+        >
+          <Image alt="bell" src={bell} width="30" height="30"></Image>
+        </div>
+        <div className="w-4"></div>
         <ConnectButton></ConnectButton>
-
       </div>
     </div>
   );

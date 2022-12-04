@@ -4,6 +4,8 @@ import { useAccount, useSigner, useContract, useProvider } from "wagmi";
 import { BigNumber, ethers } from "ethers";
 import { config } from "../config/config";
 import axios from "axios";
+import CurvedButton from "./CurvedButton";
+
 export default function Form() {
   const { isConnected, address } = useAccount();
   const { data: signer, isError } = useSigner();
@@ -92,45 +94,111 @@ export default function Form() {
     }
   };
 
+  const [settlement, setSettlement] = useState("");
+  const [settlements, setSettlements] = useState([]);
+  const handleClick = (event) => {
+    event.preventDefault();
+    setSettlements([...settlements, settlement]);
+    console.log(settlements);
+  };
+
+  useEffect(() => {
+    console.log(settlements);
+  }, [settlements]);
+
   return (
-    <div className="flex flex-col justify-center items-center">
-      <span className="font-niceFont text-[4rem]">
-        Raise a case for yourself
-      </span>
-      <span className="text-[1.5rem]">
-        Describe various details related to your case here
-      </span>
-      <div className="w-full flex flex-col justify-center items-center mt-5">
-        <div className="h-[3rem] w-full bg-caseCard flex flex-col justify-center items-center p-3 rounded-xl mt-4">
+    <>
+      <div className="flex flex-col justify-center items-center">
+        <span className="font-niceFont text-[4rem]">
+          Raise a case for yourself
+        </span>
+        <span className="text-[1.5rem]">
+          Describe various details related to your case here
+        </span>
+        <div className="w-full flex flex-col justify-center items-center mt-5">
+          <div className="h-[3rem] w-full bg-caseCard flex flex-col justify-center items-center p-3 rounded-xl mt-4">
+            <input
+              type="text"
+              className="w-full h-full bg-caseCard outline-none border-none"
+              placeholder="Wallet Address of Other Party"
+              onChange={(e) => {
+                setFormData({ ...formData, against: e.target.value });
+              }}
+            ></input>
+          </div>
+          <div className="h-[3rem] w-full bg-caseCard flex flex-col justify-center items-center p-3 rounded-xl mt-4">
+            <input
+              type="text"
+              className="w-full h-full bg-caseCard outline-none border-none"
+              placeholder="Description about the case"
+              onChange={(e) => {
+                setFormData({ ...formData, desp: e.target.value });
+              }}
+            ></input>
+          </div>
           <input
-            type="text"
-            className="w-full h-full bg-caseCard outline-none border-none"
-            placeholder="Wallet Address of Other Party"
+            type="file"
+            className="mt-5"
+            value={formData.file}
             onChange={(e) => {
-              setFormData({ ...formData, against: e.target.value });
+              e.preventDefault();
+              setFormData({ ...formData, imageFile: e.target.files });
             }}
-          ></input>
+          />
         </div>
-        <div className="h-[3rem] w-full bg-caseCard flex flex-col justify-center items-center p-3 rounded-xl mt-4">
-          <input
-            type="text"
-            className="w-full h-full bg-caseCard outline-none border-none"
-            placeholder="Description about the case"
-            onChange={(e) => {
-              setFormData({ ...formData, desp: e.target.value });
-            }}
-          ></input>
-        </div>
-        <input
-          type="file"
-          className="mt-5"
-          value={formData.file}
-          onChange={(e) => {
-            e.preventDefault();
-            setFormData({ ...formData, imageFile: e.target.files });
-          }}
-        />
       </div>
-    </div>
+      <div className="flex flex-col w-full h-full justify-center items-center">
+        <h3 className="mt-5">
+          Describe the solutions to your case here {console.log(settlement)}
+        </h3>
+        {settlements.map((settlementStr) => (
+          <div className="h-[8rem] w-[47%] bg-caseCard flex flex-col justify-start items-start p-3 rounded-xl mt-4">
+            {settlementStr}
+          </div>
+        ))}
+
+        <div className="h-[8rem] w-[60%] bg-caseCard flex flex-col justify-center items-center p-3 rounded-xl mt-4">
+          <textarea
+            type="text"
+            className="w-full h-full bg-caseCard outline-none border-none"
+            placeholder="Field 1"
+            onChange={(e) => {
+              setSettlement(e.target.value);
+            }}
+          ></textarea>
+        </div>
+
+        <div className="h-5"></div>
+        <CurvedButton
+          width="w-[6rem]"
+          height="h-[3rem]"
+          bg="bg-caseCard"
+          title="Submit"
+          textSize="text-[1rem]"
+          action={() => {
+            console.log("clicked");
+            setSettlements([...settlements, settlement]);
+          }}
+        >
+          Submit
+        </CurvedButton>
+      
+        <div className="h-5"></div>
+        <CurvedButton
+          width="w-[12rem]"
+          height="h-[3rem]"
+          bg="bg-caseCard"
+          title="File Case"
+          textSize="text-[1.4rem]"
+          action={() => {
+            console.log("clicked");
+            setSettlements([...settlements, settlement]);
+          }}
+        >
+          Submit
+        </CurvedButton>
+        <div className="h-5"></div>
+      </div>
+    </>
   );
 }

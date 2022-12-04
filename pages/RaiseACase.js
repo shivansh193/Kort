@@ -8,7 +8,7 @@ export default function App() {
     <div className="main flex flex-col justify-start items-center overflow-y-scroll no-scrollbar">
       <Navbar></Navbar>
       <Form />
-      <List />
+      {/* <List /> */}
     </div>
   );
 }

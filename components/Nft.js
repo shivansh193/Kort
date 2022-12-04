@@ -3,8 +3,7 @@ import Image from "next/image";
 import logo from "../assets/logos/Kort Logo.png";
 
 const Nft = () => {
-
-  const handleDownloadImage = async () => {
+  /*  const handleDownloadImage = async () => {
     const element = printRef.current;
     const canvas = await html2canvas(element);
 
@@ -25,13 +24,13 @@ const Nft = () => {
       });
 
       console.log("metadata:", metadata.ipnft);
-      try {?Mt createToken.wait();
+       try {?Mt createToken.wait(); 
         router.push("/Home");
       } catch (error) {
         alert(error.message);
       }
     });
-  };
+  }; */
 
   return (
     <div className="w-[500px] h-[500px] nft flex flex-col justify-start items-center">

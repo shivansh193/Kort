@@ -31,4 +31,5 @@ const CaseCard = ({action}) => {
   );
 };
 
+
 export default CaseCard;

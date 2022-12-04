@@ -2,15 +2,71 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Image from "next/image";
 import NFT from "../assets/images/NFT.png";
+import { NFTStorage, File } from "nft.storage";
 import ProgressBar from "../components/ProgressBar";
 import CurvedButton from "../components/CurvedButton";
+import html2canvas from "html2canvas";
+import Nft from "../components/Nft";
 
 const CaseDetails = () => {
+  const client = new NFTStorage({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEY1MjJhNzc0MjlmOTA1NDlmZjFCN0Q5RDkyQzE3M2RFNUI3ODAyMGQiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY3MDEyMTQ3MDM5NiwibmFtZSI6IktvcnQifQ.lCO3u7ci7fuTjOHRfh1JjSN4frko2T3lTMo4cv7rdUE",
+  });
+
+  const printRef = React.useRef();
+
+  const handleDownloadImage = async () => {
+    const element = printRef.current;
+    const canvas = await html2canvas(element);
+
+    canvas.toBlob(async (blob) => {
+      let file = new File(
+        [blob],
+        `KortNFT_${allDiaries[diaryId].diaryName}.png`,
+        { type: "image/png" }
+      );
+      console.log(file);
+      var url = window.URL.createObjectURL(file);
+      window.location.assign(url);
+
+      const metadata = await client.store({
+        name: `KORT NFT`,
+        image: file,
+        description: `${allDiaries[diaryId].description}`,
+      });
+
+      console.log("metadata:", metadata.ipnft);
+      try {
+        const createToken = await nftContract.createToken(
+          metadata.url,
+          diaryId
+        );
+
+        createToken.on("transactionHash", (hash) => {
+          console.log(hash);
+        });
+
+        createToken.on("error", (error, recipt) => {
+          console.log(error);
+          alert(error);
+        });
+        await createToken.wait();
+        router.push("/Home");
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  };
+
   return (
     <div className="main min-h-[100vh] flex flex-col justify-start items-center">
       <Navbar></Navbar>
       <div className="flex flex-row justify-between items-center w-[80%] h-[80%] mt-20">
-        <Image src={NFT} width="450" height="450"></Image>
+        <div ref={printRef}>
+          <Nft></Nft>
+        </div>
+
         <div className="flex flex-col w-[60%] h-[90%] justify-center items-end">
           <div className="w-full h-full bg-[#0a0909] rounded-xl overflow-y-scroll no-scrollbar flex flex-col justify-start items-center p-4 outline-2 border-[1px] border-solid border-white">
             <span className="font-bold text-2xl">Case Name</span>

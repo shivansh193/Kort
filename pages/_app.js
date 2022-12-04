@@ -3,15 +3,34 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
-import { publicProvider } from "wagmi/providers/public";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
 const { chains, provider } = configureChains(
-  [chain.polygon],
-  [publicProvider()]
+  [chain.polygonMumbai],
+  [
+    jsonRpcProvider({
+      rpc: (chain) => ({
+        http: `${process.env.NEXT_PUBLIC_QUICKNODE_HTTP}`,
+        webSocket: `${process.env.NEXT_PUBLIC_QUICKNODE_WS}`,
+      }),
+    }),
+  ]
 );
 
+/* const { chains, provider } = configureChains(
+  [chain.polygonMumbai],
+  [
+    jsonRpcProvider({
+      rpc: (chain) => ({
+        http: `${process.env.NEXT_PUBLIC_INFURA_HTTP}`,
+        webSocket: `${process.env.NEXT_PUBLIC_INFURA_WS}`,
+      }),
+    }),
+  ]
+); */
+
 const { connectors } = getDefaultWallets({
-  appName: "My RainbowKit App",
+  appName: "Kort",
   chains,
 });
 

@@ -5,6 +5,7 @@ import { BigNumber, ethers } from "ethers";
 import { config } from "../config/config";
 import axios from "axios";
 import CurvedButton from "./CurvedButton";
+import lighthouse from "@lighthouse-web3/sdk";
 
 export default function Form() {
   const { isConnected, address } = useAccount();
@@ -22,12 +23,7 @@ export default function Form() {
     file: undefined,
   });
 
-  useEffect(() => {
-    if (signer) {
-      //todo
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [signer]);
+  const [hash, setHash] = useState("");
 
   const sign_message = async () => {
     const messageRequested = (
@@ -59,7 +55,6 @@ export default function Form() {
 
     // Push file to lighthouse node
     const output = await lighthouse.upload(e, accessToken);
-    console.log("File Status:", output);
     /*
       output:
         {
@@ -69,23 +64,25 @@ export default function Form() {
         }
       Note: Hash in response is CID.
     */
-
+    setHash("ipfs://" + output.data.Hash);
     console.log("Visit at https://ipfs.io/ipfs/" + output.data.Hash);
     return "ipfs://" + output.data.Hash;
   };
-  const raiseCase = async (e) => {
+
+  const raiseCase = async () => {
     try {
-      const hash = await deploy(e);
       //take approval
       const tx1 = await kortToken.approve(
         config.kortAddress,
         ethers.utils.parseEther("1")
       );
+
       await tx1.wait();
+
       const tx2 = await kort.proposeCase(
+        hash,
         formData.against,
-        formData.options,
-        hash
+        formData.options
       );
       await tx2.wait();
       alert("Case Created");
@@ -142,7 +139,8 @@ export default function Form() {
             value={formData.file}
             onChange={(e) => {
               e.preventDefault();
-              setFormData({ ...formData, imageFile: e.target.files });
+              deploy(e);
+              setFormData({ ...formData, imageFiles: e.target.files });
             }}
           />
         </div>
@@ -182,7 +180,7 @@ export default function Form() {
         >
           Submit
         </CurvedButton>
-      
+
         <div className="h-5"></div>
         <CurvedButton
           width="w-[12rem]"
@@ -192,7 +190,7 @@ export default function Form() {
           textSize="text-[1.4rem]"
           action={() => {
             console.log("clicked");
-            setSettlements([...settlements, settlement]);
+            raiseCase();
           }}
         >
           Submit

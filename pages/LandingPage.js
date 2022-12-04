@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
-import Kort from "../assets/logos/Kort Logo.png";
-import myLogo from "../assets/logos/Kort Logo.png";
+import Kort from "../assets/logos/KortLogo.png";
+import myLogo from "../assets/logos/KortLogo.png";
 import Image from "next/image";
 import CurvedButton from "../components/CurvedButton";
 
@@ -43,7 +43,7 @@ const LandingPage = () => {
           </span>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <Image alt="Kort Logo" src={Kort} width="500" height="500"></Image>
+          <Image alt="KortLogo" src={Kort} width="500" height="500"></Image>
         </div>
       </div>
       <div className="h-5"></div>

@@ -1,5 +1,5 @@
 export const config = {
-  kortAddress: "0xB726D46F4E23B5A397F59E3CA72ba4E8B09D2164",
+  kortAddress: "0xb3750eb56202393C1ec15fB8a31ce5BAe91D3df4",
   tokenAddress: "0xBce3EF2BD6242012c28A57AcAf5e062eCF1036e0",
   kortABI: [
     {
@@ -192,6 +192,11 @@ export const config = {
           internalType: "uint256",
           name: "caseID",
           type: "uint256",
+        },
+        {
+          internalType: "string",
+          name: "desc",
+          type: "string",
         },
         {
           internalType: "address",
@@ -447,6 +452,11 @@ export const config = {
     },
     {
       inputs: [
+        {
+          internalType: "string",
+          name: "_desc",
+          type: "string",
+        },
         {
           internalType: "address",
           name: "_against",

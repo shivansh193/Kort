@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import logo from "../assets/logos/Kort Logo.png";
+import logo from "../assets/logos/KortLogo.png";
 
 const Nft = () => {
   /*  const handleDownloadImage = async () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import KortLogo from "../assets/logos/Kort Logo.png";
+import KortLogo from "../assets/logos/KortLogo.png";
 import bell from "../assets/images/bell.jpg";
 import { useRouter } from "next/router";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -16,7 +16,7 @@ const Navbar = () => {
           router.push("/LandingPage");
         }}
       >
-        <Image alt="Kort Logo" src={KortLogo} width="60" height="60"></Image>
+        <Image alt="KortLogo" src={KortLogo} width="60" height="60"></Image>
       </div>
       <div
         className="flex flex-row justify-center items-center ml-10 font-niceFont text-[3rem] tracking-[1rem] cursor-pointer"

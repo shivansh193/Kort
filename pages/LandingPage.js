@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Kort from "../assets/logos/Kort Logo.png";
 import myLogo from "../assets/logos/Kort Logo.png";
 import Image from "next/image";
+import CurvedButton from "../components/CurvedButton";
 
 const LandingPage = () => {
   const router = useRouter();
@@ -19,7 +20,16 @@ const LandingPage = () => {
           <Image alt="Kort Logo" src={Kort} width="500" height="500"></Image>
         </div>
       </div>
-      
+      <CurvedButton
+        width="w-[20rem]"
+        height="h-[5rem]"
+        bg="bg-caseCard hover:bg-navBg "
+        textSize="text-xl"
+        title="Enter Dapp"
+        action={() => {
+          router.push("/Home");
+        }}
+      ></CurvedButton>
     </div>
   );
 };

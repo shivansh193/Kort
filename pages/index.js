@@ -7,8 +7,8 @@ import LandingPage from "./LandingPage";
 const Index = () => {
   return (
     <div>
-      {/* <LandingPage></LandingPage> */}
-      <Home />
+      <LandingPage></LandingPage>
+      {/* <Home /> */}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import CurvedButton from "../components/CurvedButton";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
 
+
 const Home = () => {
   const router = useRouter();
 
@@ -11,7 +12,8 @@ const Home = () => {
     <div className="main min-h-screen flex flex-col justify-start items-center">
       <div className="main min-h-screen flex flex-col justify-start overflow-y-scroll no-scrollbar items-center">
         <Navbar></Navbar>
-        <img src="https://picsum.photos/1200/600" />
+        <div className="w-[80%]"><img src="https://picsum.photos/1200/600" /></div>
+        
         <div className="w-[50%] flex flex-row justify-between items-center mt-10">
           <CurvedButton
             width="w-[20rem]"
